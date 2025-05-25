@@ -1,2 +1,2 @@
 # a
--all folders are netbeans projects 
+# - all folders are netbeans projects 
