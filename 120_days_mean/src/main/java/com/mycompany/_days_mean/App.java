@@ -74,12 +74,35 @@ public class App {
         }
         
           System.out.println( "size vector price ="+price_closure.size());
+          //making the vector of the 120 days mean
+                   Vector <Double> mean_120_days = new Vector();
+               double mean_last_120_days=0.0;
+                   for(int ii=1;ii<price_closure.size();ii++)
+                    {   mean_last_120_days =price_closure.get(ii)+mean_last_120_days;
+                        
+                        
+                        if(ii<120)
+                          {  mean_120_days.add(0.0) ;continue;}
+                        if(ii==120)
+                            {  mean_120_days.add( mean_last_120_days /120.0) ;continue;}
+                        if(ii>120)
+                            {  mean_last_120_days =mean_last_120_days -price_closure.get(ii-121);
+                                 mean_120_days.add( mean_last_120_days /120.0) ;
+                            
+                            }
+                    }
+          
         //need python and matplotlib to run 
           Plot plt = Plot.create();
           plt.plot()
     .add(price_closure)
-    .label("label")
+    .label("price")
     .linestyle("-");
+          Plot.create();
+          plt.plot()
+    .add(mean_120_days)
+    .label("mean of the last 120 days ")
+    .linestyle("--");
           plt.xlabel("xlabel");
           plt.ylabel("ylabel");
           plt.title("Title!");
